@@ -1,19 +1,28 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy.stats import spearmanr
 
 # 1. Carrega as bases que você acabou de limpar
 tabela_fundos = pd.read_csv("tabela_fundos_limpo.csv")
 tabela_cdi = pd.read_csv("tabela_cdi_limpo.csv")
 
-# IMPORTANTE: Como os arquivos foram salvos, o Pandas lê a data como texto.
-# Precisamos converter para datetime de novo para o gráfico ordenar o tempo certinho.
 tabela_fundos['data'] = pd.to_datetime(tabela_fundos['data'])
 tabela_cdi['data'] = pd.to_datetime(tabela_cdi['data'])
 
-# Ordena por data para a linha do gráfico não ficar idas e vindas bizzarras
 tabela_fundos = tabela_fundos.sort_values('data')
 tabela_cdi = tabela_cdi.sort_values('data')
+
+tabela_final = pd.merge(tabela_fundos, tabela_cdi, on='data', how='inner')
+
+correlacao_por_fundo = tabela_final.groupby('nome_fundo').apply(lambda x: spearmanr(x['rentabilidade_mensal'], x['taxa_cdi'])[0])
+
+print("📊 --- CORRELAÇÃO DE SPEARMAN POR FUNDO ---")
+for fundo in tabela_final['nome_fundo'].unique():
+    dados_fundo = tabela_final[tabela_final['nome_fundo'] == fundo]
+    # Calcula a correlação entre rentabilidade e cdi
+    correlacao, p_valor = spearmanr(dados_fundo['rentabilidade_mensal'], dados_fundo['taxa_cdi'])
+    print(f"Fundo {fundo}: Correlação de Spearman = {correlacao:.4f}")
 
 # 2. Configura o estilo visual do gráfico (Seaborn deixa mais moderno)
 sns.set_theme(style="whitegrid")
@@ -50,3 +59,6 @@ plt.tight_layout() # Ajusta as margens para não cortar nada
 
 # 6. Exibe o gráfico na tela
 plt.show()
+
+tabela_final.to_csv("tabela_unica_powerbi.csv", index=False)
+print("\n🚀 Tabela única gerada com sucesso para o Power BI!")

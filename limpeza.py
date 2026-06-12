@@ -14,6 +14,8 @@ print(tabela_cdi['data'])
 # Mixed resolve a bagunça de formatos (com e sem hora) e coerce não deixa travar se tiver texto bizarro
 tabela_cdi['data'] = pd.to_datetime(tabela_cdi['data'], format='mixed', errors='coerce')
 
+tabela_cdi = tabela_cdi[tabela_cdi['data'] <= '2024-12-31']
+
 # Cria a coluna padrão BR com barras para não passar trabalho manual no Power BI
 tabela_cdi['data_formatada'] = tabela_cdi['data'].dt.strftime("%d/%m/%Y")
 
@@ -69,6 +71,8 @@ print(tabela_fundos['data'])
 
 # Mesmo tratamento do CDI: mixed e coerce para blindar a conversão da data
 tabela_fundos['data'] = pd.to_datetime(tabela_fundos['data'], format='mixed', errors='coerce')
+
+tabela_fundos = tabela_fundos[tabela_fundos['data'] <= '2024-12-31']
 
 # Salva a data bonitinha com barras para os gráficos do Power BI
 tabela_fundos['data_formatada'] = tabela_fundos['data'].dt.strftime("%d/%m/%Y")
