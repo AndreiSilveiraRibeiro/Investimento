@@ -30,4 +30,5 @@ print(tabela_fundos.describe())
 # 6. Sobrescreve os arquivos limpos agora SEM nenhuma distorção para o Power BI
 tabela_fundos.to_csv("tabela_fundos_limpo.csv", index=False)
 tabela_cdi.to_csv("tabela_cdi_limpo.csv", index=False)
+tabela_outliers.to_csv('tabela_outliers.csv', index=False)
 print("🚀 Arquivos atualizados e prontos para o Dashboard!")

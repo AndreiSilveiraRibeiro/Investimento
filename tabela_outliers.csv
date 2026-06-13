@@ -1,0 +1,8 @@
+id_fundo,nome_fundo,data,rentabilidade_mensal,risco,data_formatada
+102,Fundo Beta,2023-06-30,-0.05,Baixo,30/06/2023
+103,Fundo Gama,2023-07-31,-0.31,Médio,31/07/2023
+101,Fundo Alpha,2023-10-31,10.24,Alto,31/10/2023
+101,Fundo Alpha,2024-02-29,6.03,Baixo,29/02/2024
+101,Fundo Alpha,2024-03-31,9.55,Baixo,31/03/2024
+101,Fundo Alpha,2024-04-30,5.47,Alto,30/04/2024
+101,Fundo Alpha,2024-07-31,6.98,Médio,31/07/2024
