@@ -2,6 +2,8 @@
 
 Este projeto foi desenvolvido como parte do Projeto **Investimento**, com o objetivo de construir uma solução de inteligência de negócios de ponta a ponta. A pipeline engloba desde a **extração** e **limpeza** pesada de dados financeiros utilizando **Python (Pandas)** até a **modelagem**, **tratamento estatístico de anomalias (outliers)**, **cálculo de correlação** e criação de um **dashboard** interativo no **Power BI**.
 
+![Dashboard de Performance de Fundos](dashboard.png)
+
 ## 🛠️ Tecnologias e Ferramentas Utilizadas
 
 - **Linguagem Principal:** Python 3
